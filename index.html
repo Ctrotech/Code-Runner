@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+		<meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="styles.css">
+    		<title>Code Runner</title>
+		</head>
+<body>
+		
+<div class="container" id="container">
+		
+		<div class="loader-modal" id="loaderModal">
+				<div class="loader-content">
+						<img class="img" src="loaderLogo.png">
+						<p style="font-size: 18px;
+		font-weight: 600; margin-top: 20px">Code Runner</p>
+						
+						<div class="loader-bottom">
+						<span id="loader"></span>
+						<p>initializing Editor...</p>
+						</div>
+						
+				</div>		
+		</div>
+		
+		
+		<div class="outputs" id="outputs">
+				<div class="output-bar">
+						<div class="output-bar-items-left">
+								
+								<p class="title" id="htmlTitle">Document</p>
+								<small class="preview-indicator">Preview</small>
+						</div>
+						
+								<div class="output-bar-items-right" id="toggleOutputBarList">
+										<img class="img" src="elipsis.png"=alt="">
+						</div>
+						
+				</div>
+				<iframe id="output" class="iframe"></iframe>		
+		</div>
+		
+		<div class="editor--top">
+				
+				<div class="topleft">
+  						<img class="img" src="logo.png" alt="">
+						<p>Code...</p>
+				</div>
+				
+						<div class="topright" id="clearCode">
+  						<img class="img" src="clear.png" alt="">
+				</div>
+		
+						<div class="topright" id="undo">
+  						<img class="img" src="undo.png" alt="">
+				</div>
+				<div class="topright" id="redo">
+  						<img class="img" src="redo.png" alt="">
+				</div>
+				<div class="topright" id="runCode">
+  						<img class="img" src="run.png" alt="">
+				</div>
+				<div class="topright" id="lists-modal-Btn">
+  						<img class="img" src="elipsis.png" alt="">
+				</div>
+				
+		</div>
+		
+
+		
+						
+						<ul class="lists" id="lists">
+								<input type="file" id="" hidden>
+								<li class="li" id="openFile" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"><p>Open</p></li>
+								<li class="li" id="code-modal-btn"><p>Code</p></li>
+								<li class="li" id="shareApp"><p>Share App</p></li>
+								<li class="li" id="settings-modal-btn"><p>Settings</p></li>
+								<li class="li" id="rateApp"><p>Rate</p></li>
+								<li class="li" id="about-modal-btn"><p>About</p></li>
+								<li class="li lastList" id="exitApp" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"><p>Exit</p></li>
+						</ul>
+		
+		<ul id="code-items-lists">
+				<p class="list-headings" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">Code</p>
+								<li class="li"><img src="select-current-code.png" class="img"><p>Select current line</p></li>
+								<li class="li"><img src="remove-current-line-code.png" class="img"><p>Remove current line</p></li>
+								<li class="li"><img src="duplicate-code.png" class="img"><p>Duplicate line</p></li>
+								<li class="li"><img src="format-beautify.png" class="img"><p>Format (Beautify)</p></li>
+								<li class="li"><img src="pin-save.png" class="img"><p>Pin (Save)</p></li>
+								<li class="li lastList" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"><img src="share.png" class="img"><p>Share</p></li>
+						</ul>
+						
+		
+ 		<ul class="output-bar-items-list" id="outputBarItems">
+								<li class="li" id="openFile" style="border-top-left-radius: 10px; border-top-right-radius: 10px;"><p>Refresh</p></li>
+								<li class="li" id="open-output-inbrowser-btn"><p>Open in Browser...</p></li>
+								<li class="li" id="shareApp"><p>Back</p></li>
+								<li class="li" id="settings-modal-btn"><p>Forward</p></li>
+								<li class="li" id="rateApp"><p>Clear Cache</p></li>
+ 						<li class="li sp" id="console-modal-btn"><p>Console</p><input type="checkbox"><label class="checkbox-custom" for="console-modal-btn"></label></li>
+								<li class="li sp" id="desktopMode-btn"><p>Desktop Mode</p><input type="checkbox"><label class="checkbox-custom" for="desktopMode-btn"></label></li>
+								<li class="li sp" id="zooming-enable"><p>Zooming</p><input type="checkbox" class=""><label class="checkbox-custom" for="zooming-enable"></label></li>
+								<li class="li lastList" id="exitoutputModal" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"><p>Exit</p></li>
+						</ul>
+		
+		<div class="console-modal">
+				<div class="console-tools-top">
+						
+						<div class="console-tool" style="margin-left: 8px;">
+						<p>Console</p>
+				</div>
+						
+						
+						<div class="console-tool">
+						<p>Network</p>
+				</div>
+						
+						<div class="console-tool">
+						<p>Info</p>
+				</div>
+						
+						<div class="console-tool">
+						<p>settings</p>
+				</div>
+						
+						
+						</div>
+					<div id="tool-two">
+				
+				<div class="topleft">
+  						<img class="img" src="icon.png" alt="">
+				</div>
+				
+							<div class="topleft-console">
+  						<p>All</p>
+				
+							
+									<p>Info</p>
+				
+				
+							
+  						<p>Warning</p>
+							
+  						<p>Error</p>
+				</div>
+
+							
+						<div class="topright">
+  						<img class="img" src="filter.png" alt="">
+				</div>
+		
+					 
+				
+		</div>
+
+				
+		</div>
+		
+		<div class="settingsModal" id="settingsModal">
+					<div class="settings-top">
+						<img src="chevron-left.png" class="img" id="closeSettingsModal">
+						<p style="
+		display: block;
+								text-align: center;
+		font-weight: 600;
+		font-size: 18px;
+								margin-top: 4px;
+								color: #4F62E3; 
+">Settings</p>
+				</div>
+				<div class="settings-sections" style="margin-top: 3rem">
+						<h4 style="color: #4F62E3; margin-bottom: 20px; margin-left: 20px;">Appearance</h4>
+						<div class="settings-section" id="themeSelectBtn">
+								<h4>Theme</h4>
+						
+						<span id="selectedTheme">Light</span>
+				
+						</div>
+						</div>
+						
+				
+							<div class="settings-sections" style="margin-top: 20px">
+									<h4 style="color: #4F62E3; margin-bottom: 20px; margin-left: 20px;">Editor</h4>
+									<div class="settings-section" id="modeSelectBtn">
+						<h4>Mode</h4>
+						<span id="selectedEditorMode">JavaScript</span>
+				</div>
+
+											<div class="settings-section" id="FontSizeSelectBtn">
+						<h4>Font Size</h4>
+						<span id="selectedFontSize">12px</span>
+				</div>
+				
+						<div class="settings-section">
+						<h4>Font Family</h4>
+						<span id="selectFontFamily">jetbrains mono</span>
+				</div>
+						
+						<div class="settings-section" id="fontweightBtn">
+						<h4>Font Weight</h4>
+						<span id="selectedFontWeight">Bold</span>
+				</div>
+						
+						<div class="settings-section" id="enableAutoSave">
+										
+								<div class="slider">
+											<h4>Enable Auto Save</h4>
+										<input type="checkbox" class="auto-save-radio" checked>
+										</div>
+				</div>
+						
+						<div class="settings-section" id="enableAutoCompletion">
+											
+								<div class="slider">
+										<h4>Enable Autocompletion</h4>
+										<input type="checkbox" class="auto-complete-radio" checked>
+										</div>
+				</div>
+						
+						<div class="settings-section" id="showLineNumbers">
+									
+								<div class="slider">
+												<h4>show Line Numbers</h4>
+										<input type="checkbox" class="line-numbers-radio" checked>
+										</div>
+				</div>
+						
+						<div class="settings-section" id="enableIndentedSoftWrap">
+					
+								<div class="slider">
+																<h4>Enable Indented Soft Wrap</h4>
+										<input type="checkbox" class="indent-soft-wrap-radio" checked>
+										</div>
+				</div>
+						
+						<div class="settings-section" id="enableCodeSnippets">
+										
+								<div class="slider">
+											<h4>Enable Code Snippets</h4>
+										<input type="checkbox" class="code-snipet-enable-radio" checked>
+										</div>
+				</div>
+						
+						<div class="settings-section" id="showSpaces">
+											
+								<div class="slider">
+										<h4>Show Spaces</h4>
+										<input type="checkbox" class="show-spaces-radio">
+										</div>
+				</div>
+						
+						<div class="settings-section" id="enableWordwrap">
+										
+								<div class="slider">
+											<h4>Enable Word Wrap</h4>
+										<input type="checkbox" class="word-wrap-radio">
+										</div>
+				</div>
+						
+						<div class="settings-section" id="useSoftab">
+											
+								<div class="slider">
+										<h4>Use Soft Tabs</h4>
+										<input type="checkbox" class="use-soft-tab-radio">
+										</div>
+				</div>
+						
+						
+						<div class="settings-section" id="workerr-syntax-error">
+									
+								<div class="slider">
+												<h4>Use Worker (Syntax Error)</h4>
+										<input type="checkbox" class="syntax-error-radio" checked>
+										</div>
+				</div>
+						
+								<div class="settings-section" id="tabsizeSelectBtn">
+						<h4>Tab Size</h4>
+						<span id="selectedTabSize">2</span>
+				</div>
+				
+						</div>
+		</div>
+			
+		<div class="backdrop"></div>
+		<div class="settings-section-modal" id="themeSelectModal">
+				<h4 style="margin: 20px" >Set app theme</h4>
+				<div class="theme-options" id="light">
+						<input type="radio">
+						<p>Light</p>
+				</div>
+				<div class="theme-options" id="dark">
+						<input type="radio">
+						<p>Dark</p>
+				</div>
+				<div class="theme-options" id="systemDefault">
+						<input type="radio">
+						<p>System Default</p>
+				</div>
+				<span id="closeThemeModdal">cancel</span>
+		</div>
+		
+		<div class="backdrop"></div>
+		<div class="settings-section-modal" id="tabsizeSelectModal">
+				<h4 style="margin: 20px" >Set tab size</h4>
+				<div class="theme-options" id="1">
+						<input type="radio" class="tab-size-radio" value="1">
+						<p>1</p>
+				</div>
+				<div class="theme-options" id="2">
+						<input type="radio" class="tab-size-radio" value="2" checked>
+						<p>2</p>
+				</div>
+				
+				<div class="theme-options" id="3">
+						<input type="radio" class="tab-size-radio" value="3">
+						<p>3</p>
+				</div>
+				
+				<div class="theme-options" id="4">
+						<input type="radio" class="tab-size-radio" value="4">
+						<p>4</p>
+				</div>
+				
+				<div class="theme-options" id="8">
+						<input type="radio" class="tab-size-radio" value="8">
+						<p>8</p>
+				</div>
+				
+				<span id="closeTabsizeModdal">cancel</span>
+		</div>
+		
+		<div class="settings-section-modal" id="modeSelectModal">
+    <h4 style="margin: 20px">Set app mode</h4>
+    <div class="mode-options" id="htmlMode">
+        <input type="radio" id="htmlMode" class="editor-mode-radio" value="htmlMode">
+        <label class="radio-custom" for="htmlMode"></label>
+        <p>HTML</p>
+    </div>
+    <div class="mode-options" id="htmlAndCssMode">
+        <input type="radio" id="htmlAndCssMode" class="editor-mode-radio" value="htmlAndCssMode">
+        <label class="radio-custom" for="htmlAndCssMode"></label>
+        <p>HTML & CSS</p>
+    </div>
+    <div class="mode-options" id="javascriptMode">
+        <input type="radio" id="javascriptMode" class="editor-mode-radio" value="javascriptMode" checked>
+        <label class="radio-custom" for="javascriptMode"></label>
+        <p>JavaScript</p>
+    </div>
+    <div class="mode-options" id="allMode">
+        <input type="radio" id="allMode" class="editor-mode-radio" value="all">
+        <label class="radio-custom" for="allMode"></label>
+        <p>All</p>
+    </div>
+    <span id="closeModeModal">cancel</span>
+</div>
+		
+		<div class="backdrop"></div>
+		<div class="settings-section-modal" id="fontweightSelectModal">
+				<h4 style="margin: 20px" >Set font weight</h4>
+				<div class="mode-options" id="normal">
+						<input type="radio" value="normal" class="font-weight-radio" value="">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>Normal</p>
+				</div>
+				<div class="mode-options" id="bold">
+						<input type="radio" value="bold" class="font-weight-radio" checked>
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>Bold</p>
+				</div>
+				<div class="mode-options" id="100">
+						<input type="radio" value="100" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 100</p>
+				</div>
+				<div class="theme-options" id="200">
+						<input type="radio" value="200" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 200</p>
+				</div>
+				
+				<div class="theme-options" id="300">
+						<input type="radio" value="300" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 300</p>
+				</div>
+				
+				<div class="theme-options" id="400">
+						<input type="radio" value="400" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 400</p>
+				</div>
+				
+				<div class="theme-options" id="500">
+						<input type="radio" value="500" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 500</p>
+				</div>
+				
+				<div class="theme-options" id="600">
+						<input type="radio" value="600" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 600</p>
+				</div>
+				
+				<div class="theme-options" id="700">
+						<input type="radio" value="700" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 700</p>
+				</div>
+				
+				<div class="theme-options" id="800">
+						<input type="radio" value="800" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 800</p>
+				</div>
+				<div class="theme-options" id="900">
+						<input type="radio" value="900" class="font-weight-radio">
+						 <label class="radio-custom" for="option3"></label>
+						
+						<p>weight 900</p>
+				</div>
+				
+				
+				
+				<span id="closeFontweightModal">cancel</span>
+		</div>
+		
+ 		
+		<div class="backdrop" id="backdrop"></div>
+		<div class="fontsize-section-modal" id="fontsizeSelectModal">
+				<div style="background: #fff; padding: 20px; border-bottom: 1px solid #eee;">
+				<h4>Set font size</h4>
+						</div>
+				<div class="font-size-options" id="10">
+						<input type="radio" class="font-size-radio" value="10">
+						 <label class="radio-custom" for="option3"></label>
+									
+						<p>10px</p>
+				</div>
+				
+				<div class="font-size-options" id="11">
+						<input type="radio" class="font-size-radio" value="11">
+						 <label class="radio-custom" for="option3"></label>
+									
+						<p>11px</p>
+				</div>
+				
+				<div class="font-size-options" id="12">
+						<input type="radio" class="font-size-radio" value="12" checked>
+						 <label class="radio-custom" for="option3"></label>
+									
+						<p>12px</p>
+				</div>
+				
+<div class="font-size-options" id="13">
+						<input type="radio" class="font-size-radio" value="13">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>13px</p>
+				</div>
+				
+<div class="font-size-options" id="14">
+						<input type="radio" class="font-size-radio" value="14">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>14px</p>
+				</div>
+				
+<div class="font-size-options" id="15">
+						<input type="radio" class="font-size-radio" value="15">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>15px</p>
+				</div>
+				
+<div class="font-size-options" id="16">
+						<input type="radio" class="font-size-radio" value="16">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>16px</p>
+				</div>
+				
+<div class="font-size-options" id="17">
+						<input type="radio" class="font-size-radio" value="17">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>17px</p>
+				</div>
+				
+<div class="font-size-options" id="18">
+						<input type="radio" class="font-size-radio" value="18">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>18px</p>
+				</div>
+				
+<div class="font-size-options" id="19">
+						<input type="radio" class="font-size-radio" value="19">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>19px</p>
+				</div>
+				
+<div class="font-size-options" id="20">
+						<input type="radio" class="font-size-radio" value="20">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>20px</p>
+				</div>
+<div class="font-size-options" id="21">
+						<input type="radio" class="font-size-radio" value="21">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>21px</p>
+				</div>
+<div class="font-size-options" id="22">
+						<input type="radio" class="font-size-radio" value="22">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>22px</p>
+				</div>
+				
+<div class="font-size-options" id="23">
+						<input type="radio" class="font-size-radio" value="23">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>23px</p>
+				</div>
+<div class="font-size-options" id="24">
+						<input type="radio" class="font-size-radio" value="24">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>24px</p>
+				</div>
+<div class="font-size-options" id="25">
+						<input type="radio" class="font-size-radio" value="25">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>25px</p>
+				</div>
+<div class="font-size-options"  id="26">
+						<input type="radio" class="font-size-radio" value="26">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>26px</p>
+				</div>
+<div class="font-size-options" id="27">
+						<input type="radio" class="font-size-radio" value="27">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>27px</p>
+				</div>
+<div class="font-size-options" id="28">
+						<input type="radio" class="font-size-radio" value="28">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>28px</p>
+				</div>
+<div class="font-size-options" id="29">
+						<input type="radio" class="font-size-radio" value="29">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>29px</p>
+				</div>
+<div class="font-size-options" id="30">
+						<input type="radio" class="font-size-radio" value="30">
+		 <label class="radio-custom" for="option3"></label>
+									
+						<p>30px</p>
+		</div>
+				<span id="closeFontSizeModdal">cancel</span>
+		
+				</div>
+		
+		
+		<div class="aboutUsModal" id="aboutUsModal">
+				<div class="about-top">
+						<img src="chevron-left.png" class="img" id="closeAboutUsModal">
+						<p style="
+		display: block;
+								text-align: center;
+		font-weight: 600;
+		font-size: 18px;
+								margin-top: 4px;
+								color: #4F62E3; 
+">About</p>
+				</div>
+				<div class="aboutUsContent">
+						<h2>Code Runner</h2>
+						 <p>Code Runner is a lightweight and efficient editor for running and testing your HTML, CSS, and JavaScript code snippets. It provides a simple and intuitive interface for rapid development and testing.</p>
+            <p>Version: 1.0.0</p>
+            <p>Developer: Your Name</p>
+            <p>Contact: your.email@example.com</p>
+						<div class="appInfo">
+								<small>Version</small>
+								<p id="appVersion">2024.9.5</p>
+						</div>
+						
+						<div class="appInfo">
+								<small>Build Date</small>
+								<p>12/06/2024</p>
+						</div>
+						
+						<div class="appInfo">
+								<small>Developed By</small>
+								<p>Odejobi Abiola</p>
+						</div>
+						
+				</div>		
+				
+		</div>
+		
+		
+		
+				<div class="editor--body editor-mode-modal" id="htmlModal" style="padding-top: 20px;">
+						<div id="htmlLineNumbers"class="line-numbers"><span></span></div>
+								<div id="codeEditor" class="editor--code" onKeyup="run()" tabindex="0"></div>
+						
+						</div>
+		
+				<div class="editor--body editor-mode-modal" id="cssModal">
+						<div id="cssLineNumbers"class="line-numbers"><span></span></div>
+											<div id="cssCode" class="editor--code" onKeyup="run()" tabindex="0" tyle="left: 250%"></div>
+
+						</div>
+		
+										<div class="editor--body editor-mode-modal" id="jsModal" style="padding-top: 20px;">
+						<div id="jsLineNumbers" class="line-numbers"><span></span></div>
+							<div id="jsCode" class="editor--code" onKeyup="run()" tabindex="0" syle="left: 500%"></div>
+					
+						</div>
+
+						
+							<div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true"><span id="numberofError">0</span> Error</div>
+
+		<div class="editor--tab--click--footer" id="tabModal">
+				
+				<div class="bottom-items">
+							<img src="undos.png" class="img" alt="">
+				</div>
+				
+				<div class="bottom-items">
+						<img src="redos.png" class="img" alt="">
+				</div>
+				
+				<div class="bottom-items">
+						<img src="lineup.png" class="img" alt="">
+				</div>
+				
+				<div class="bottom-items">
+						<img src="linedown.png" class="img" alt="">
+				</div>
+				
+				<div class="bottom-items">
+						<img src="selectcurrent.png" class="img" alt="">
+				</div>
+				
+				<div class="bottom-items">
+						<img src="deletecurrent.png" class="img" alt="">
+				</div>
+				
+				<div class="bottom-items">
+						<img src="duplicate.png" class="img" alt="">
+				</div>
+				
+				<div class="bottom-items">
+						<img src="format.png" class="img" alt="">
+				</div>
+				
+								<div class="bottom-items">
+										<img src="removewordleft.png" class="img" alt="">
+				</div>
+
+				<div class="bottom-items" id="saveProgress">
+										<img src="save.png" class="img" alt="">
+				</div>
+
+		</div>
+		
+		
+		
+		
+		
+
+		<div class="editor--footer">
+				
+				<div class="bottom-items" id="tabIndent">
+						<p>Tab</p>
+				</div>
+				
+				<div class="bottom-items" id="bracket">
+						<p>( )</p>
+				</div>
+				
+				<div class="bottom-items" id="equalsto">
+						<p>=</p>
+				</div>
+				
+				<div class="bottom-items" id="exclamation">
+						<p>!</p>
+				</div>
+				
+				<div class="bottom-items" id="doubleAnd">
+						<p>&&</p>
+				</div>
+				
+				<div class="bottom-items" id="semicolumn">
+						<p>;</p>
+				</div>
+				
+				<div class="bottom-items" id="dot">
+						<p>.</p>
+				</div>
+				
+				<div class="bottom-items" id="singlequotemark">
+						<p>' '</p>
+				</div>
+				
+				<div class="bottom-items" id="doublequotemark">
+						<p>" "</p>
+				</div>
+				
+								<div class="bottom-items" id="tabBtn">
+										<img src="tab.png" class="img" alt="">
+				</div>
+
+		</div>
+		
+</div>
+		
+				<script rc="penfle.js"></script>
+		<script src="tb.js"></script>
+		<script src="loader.js"></script>
+		<script src="font-weight.js"></script>
+		<script src="font-size.js"></script>
+		<script src="mode.js"></script>
+		<script src="app.js"></script>
+		<script src="script.js"></script>
+		<script src="theme.js"></script>
+		<script src="dark-mode.js"></script>
+		<script src="fileHandler.js"></script>
+
+     <script src="linenumbers.js"></script>
+		<!-- Include Ace Editor library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ext-language_tools.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/snippets/html.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/snippets/css.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/snippets/javascript.js"></script>
+<script src="https://rawgithub.com/ajaxorg/ace-builds/master/src/ace.js"></script>
+  <script src="https://rawgithub.com/ajaxorg/ace-builds/master/src/ext-emmet.js">  </script>
+  <script src="https://rawgithub.com/nightwing/emmet-core/master/emmet.js"></script>
+<script src="ext-emmet.js"></script>
+ <script>
+        // JavaScript to handle the exitApp click event
+        document.getElementById("exitApp").addEventListener("click", function() {
+            var confirmExit = confirm("Are you sure you want to exit?");
+            if (confirmExit) {
+                window.close(); // This will attempt to close the window
+                // Note: window.close() might not work due to browser security settings.
+                // You can also redirect to another page or perform other actions here.
+            }
+        });
+
+        // JavaScript to handle the shareApp click event
+        document.getElementById("shareApp").addEventListener("click", function() {
+            // Use the Web Share API if available
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Code Runner App',
+                    text: 'Check out this amazing Code Runner app!',
+                    url: 'https://example.com' // Replace with your app's URL
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch((error) => {
+                    console.error('Error sharing:', error);
+                });
+            } else {
+                // Fallback for browsers that do not support the Web Share API
+                alert('Web Share API is not supported in this browser. Please copy the URL manually.');
+                const textArea = document.createElement('textarea');
+                textArea.value = 'https://example.com'; // Replace with your app's URL
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('URL copied to clipboard!');
+            }
+        });
+        		document.getElementById("rateApp").addEventListener("click", function() {
+            var ratingUrl = 'https://example.com/rate'; // Replace with your rating URL
+            window.open(ratingUrl, '_blank');
+        });
+        						// Function to detect screen size and apply appropriate container styles
+function detectScreenSize() {
+    var screenWidth = window.innerWidth;
+
+    // If screen width is less than or equal to 768 pixels, assume mobile
+    if (screenWidth <= 768) {
+        document.querySelector('.container').classList.remove('desktop');
+        document.querySelector('.container').classList.add('mobile');
+    } else {
+        document.querySelector('.container').classList.remove('mobile');
+        document.querySelector('.container').classList.add('desktop');
+    }
+}
+
+// Call the function initially to set container styles based on screen size
+detectScreenSize();
+
+// Listen for window resize events and update container styles accordingly
+window.addEventListener('resize', detectScreenSize);
+
+
+    </script>
+        		
+</body>
+</html>
